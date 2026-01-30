@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Navbar from "./components/Navbar";
 import FeatureStack from "./components/FeatureStack";
 import Footer from "./components/Footer";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
 
 const letterAnimation = {
   hidden: { opacity: 0, y: 50 },
@@ -56,14 +57,18 @@ export default function Home() {
             </h2>
 
             <div className="flex flex-col items-center gap-6 sm:flex-row sm:justify-center">
-              <Link href="#" className="group relative flex h-14 items-center justify-center rounded-full bg-white px-10 text-lg font-bold text-black transition-all hover:scale-105 hover:bg-zinc-100 shadow-[0_0_20px_-5px_rgba(255,255,255,0.4)]">
-                <span className="relative z-10">Start Automating</span>
-                <div className="absolute inset-0 -z-10 rounded-full bg-white blur-lg opacity-20 transition-opacity group-hover:opacity-40"></div>
-              </Link>
+              <SignedOut>
+                <Link href="/register" className="group relative flex h-14 items-center justify-center rounded-full bg-white px-10 text-lg font-bold text-black transition-all hover:scale-105 hover:bg-zinc-100 shadow-[0_0_20px_-5px_rgba(255,255,255,0.4)]">
+                  <span className="relative z-10">Start Creating</span>
+                  <div className="absolute inset-0 -z-10 rounded-full bg-white blur-lg opacity-20 transition-opacity group-hover:opacity-40"></div>
+                </Link>
+              </SignedOut>
+              <SignedIn>
+                <Link href="/dashboard" className="group relative flex h-14 items-center justify-center rounded-full bg-gradient-to-r from-purple-600 to-cyan-500 px-10 text-lg font-bold text-white transition-all hover:scale-105 shadow-[0_0_20px_-5px_rgba(139,92,246,0.5)]">
+                  <span className="relative z-10">Go to Dashboard</span>
+                </Link>
+              </SignedIn>
 
-              <Link href="#demo" className="flex h-14 items-center justify-center rounded-full border border-white/10 bg-white/5 px-10 text-lg font-semibold text-white backdrop-blur-md transition-all hover:bg-white/10">
-                Watch Agents Work
-              </Link>
             </div>
           </div>
         </section>
@@ -84,9 +89,9 @@ export default function Home() {
         <section className="relative w-full py-32 overflow-hidden">
           <div className="absolute inset-0 -z-10 bg-gradient-to-t from-purple-900/20 to-transparent"></div>
           <div className="container mx-auto px-6 text-center">
-            <h2 className="mb-8 text-4xl font-bold tracking-tight md:text-6xl">Ready to deploy your agents?</h2>
+            <h2 className="mb-8 text-4xl font-bold tracking-tight md:text-6xl">Ready to create your vedios?</h2>
             <Link href="#" className="inline-flex h-16 items-center justify-center rounded-full bg-gradient-to-r from-purple-600 to-cyan-500 px-12 text-xl font-bold text-white shadow-2xl transition-transform hover:scale-105">
-              Get Early Access
+              Get Started
             </Link>
           </div>
         </section>
