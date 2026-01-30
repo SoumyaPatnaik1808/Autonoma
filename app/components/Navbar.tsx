@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 export default function Navbar() {
     return (
@@ -9,7 +9,6 @@ export default function Navbar() {
             <div className="container mx-auto flex h-20 items-center justify-between px-6 md:px-12">
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-2 group">
-
                     <span className="text-xl font-bold tracking-tight">Autonoma</span>
                 </Link>
 
@@ -22,13 +21,36 @@ export default function Navbar() {
 
                 {/* Actions */}
                 <div className="flex items-center gap-6">
+                    <SignedOut>
+                        <Link
+                            href="/sign-in"
+                            className="hidden rounded-full bg-white px-6 py-2.5 text-sm font-bold text-black hover:bg-zinc-200 dark:bg-white dark:text-black dark:hover:bg-zinc-200 transition-all hover:scale-105 md:block shadow-[0_0_15px_-3px_rgba(255,255,255,0.3)]"
+                        >
+                            Login
+                        </Link>
+                        <Link
+                            href="/sign-up"
+                            className="hidden rounded-full border border-white/20 bg-white/5 px-6 py-2.5 text-sm font-bold text-white hover:bg-white/10 transition-all hover:scale-105 md:block backdrop-blur-sm"
+                        >
+                            Sign Up
+                        </Link>
+                    </SignedOut>
 
-                    <Link
-                        href="#"
-                        className="hidden rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-black hover:bg-zinc-200 dark:bg-white dark:text-black dark:hover:bg-zinc-200 transition-all hover:scale-105 md:block shadow-[0_0_15px_-3px_rgba(255,255,255,0.3)]"
-                    >
-                        Get Started
-                    </Link>
+                    <SignedIn>
+                        <Link
+                            href="/dashboard"
+                            className="hidden rounded-full font-medium text-sm text-zinc-300 hover:text-white transition-colors md:block px-4"
+                        >
+                            Dashboard
+                        </Link>
+                        <UserButton
+                            appearance={{
+                                elements: {
+                                    avatarBox: "h-10 w-10 border border-white/20"
+                                }
+                            }}
+                        />
+                    </SignedIn>
                 </div>
             </div>
         </nav>
