@@ -15,11 +15,17 @@
   --foreground: #ffffff;
   --primary: #8B5CF6;
   --secondary: #06B6D4;
+  --border: #27272a;
+  --muted: #27272a;
+  --muted-foreground: #a1a1aa;
 }
 
 .light {
   --background: #ffffff;
   --foreground: #050505;
+  --border: #000000;
+  --muted: #f4f4f5;
+  --muted-foreground: #52525b;
 }
 
 body {
